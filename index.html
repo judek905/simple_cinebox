@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineBox</title>
+  <meta name="description" content="CineBox: browse trending movies and TV series.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo" data-view="home" aria-label="CineBox home">
+        <span class="logo-mark"></span>CineBox
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <button type="button" data-view="home" class="active">Home</button>
+        <button type="button" data-view="movies">Movies</button>
+        <button type="button" data-view="tv">TV Series</button>
+        <button type="button" data-view="list">My List <span id="listCount" class="count" hidden>0</span></button>
+      </nav>
+
+      <form class="search" id="searchForm" role="search">
+        <label for="searchInput" class="sr-only">Search movies and TV series</label>
+        <input id="searchInput" type="search" placeholder="Search movies, TV series" autocomplete="off">
+        <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+      </form>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <p>CineBox is a demo project. It does not host or stream video.</p>
+    <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div id="mVideo" class="m-video" hidden></div>
+      <div class="m-body">
+        <img id="mPoster" class="m-poster" alt="">
+        <div class="m-info">
+          <h2 id="mTitle"></h2>
+          <p id="mMeta" class="m-meta"></p>
+          <p id="mOverview" class="m-overview"></p>
+          <div class="m-actions">
+            <button type="button" class="btn btn-primary" id="mTrailer">Watch trailer</button>
+            <button type="button" class="btn btn-ghost" id="mList">+ My List</button>
+          </div>
+          <p id="mNote" class="m-note" hidden></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

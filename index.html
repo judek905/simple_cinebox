@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>CineBox</title>
-  <meta name="description" content="CineBox: browse trending movies and TV series.">
+  <meta name="description" content="CineBox: browse trending movies and TV series, search, rate titles and keep your own watch list.">
+  <meta name="theme-color" content="#14141a">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CineBox">
+  <meta property="og:description" content="Browse trending movies and TV series, rate them and build your own watch list.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314141a'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23e50914'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+  <link rel="dns-prefetch" href="https://api.themoviedb.org">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Skip link: hidden until it receives keyboard focus */
+    .skip-link { position: absolute; left: 12px; top: -60px; z-index: 10000; padding: 10px 16px; border-radius: 8px;
+      background: #fff; color: #111; font: 600 14px/1 system-ui, sans-serif; text-decoration: none; transition: top .15s; }
+    .skip-link:focus { top: 12px; }
+    #app:focus { outline: none; }
+  </style>
 </head>
 <body>
 
+  <a class="skip-link" href="#app" data-skip>Skip to content</a>
+
   <header class="nav">
     <div class="nav-inner">
-      <a href="#" class="logo" data-view="home" aria-label="CineBox home">
+      <a href="#/" class="logo" data-view="home" aria-label="CineBox home">
         <span class="logo-mark"></span>CineBox
       </a>
 
@@ -22,23 +42,28 @@
         <button type="button" data-view="list">My List <span id="listCount" class="count" hidden>0</span></button>
       </nav>
 
-      <form class="search" id="searchForm" role="search">
+      <form class="search" id="searchForm" role="search" autocomplete="off">
         <label for="searchInput" class="sr-only">Search movies and TV series</label>
-        <input id="searchInput" type="search" placeholder="Search movies, TV series" autocomplete="off">
+        <input id="searchInput" type="search" placeholder="Search movies, TV series  (press /)"
+               autocomplete="off" enterkeyhint="search" spellcheck="false"
+               role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="cbSuggest">
         <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
       </form>
     </div>
   </header>
 
-  <main id="app"></main>
+  <main id="app" tabindex="-1">
+    <noscript><p style="padding:2rem">CineBox needs JavaScript to load movies and TV series. Please turn it on and reload the page.</p></noscript>
+  </main>
 
   <footer class="footer">
     <p>CineBox is a demo project. It does not host or stream video.</p>
     <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    <p>Tip: press <strong>/</strong> to search, <strong>L</strong> on a focused poster to add it to My List, and <strong>?</strong> for all shortcuts.</p>
   </footer>
 
   <div class="modal" id="modal" hidden>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-describedby="mOverview">
       <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
       <div id="mVideo" class="m-video" hidden></div>
       <div class="m-body">
@@ -47,16 +72,23 @@
           <h2 id="mTitle"></h2>
           <p id="mMeta" class="m-meta"></p>
           <p id="mOverview" class="m-overview"></p>
+
           <div class="m-actions">
             <button type="button" class="btn btn-primary" id="mTrailer">Watch trailer</button>
             <button type="button" class="btn btn-ghost" id="mList">+ My List</button>
+            <button type="button" class="btn btn-ghost" id="mShare">Share</button>
+            <button type="button" class="btn btn-ghost" id="mPrev" aria-label="Previous title" title="Previous (left arrow)" hidden>&lsaquo;</button>
+            <button type="button" class="btn btn-ghost" id="mNext" aria-label="Next title" title="Next (right arrow)" hidden>&rsaquo;</button>
           </div>
           <p id="mNote" class="m-note" hidden></p>
+
+          <!-- Filled by script.js: tagline, genres, cast, your rating, watched box, similar titles -->
+          <div id="mExtra" class="cb-extra"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

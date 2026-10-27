@@ -12,7 +12,7 @@
   <meta property="og:title" content="CineBox">
   <meta property="og:description" content="Browse trending movies and TV series, rate them and build your own watch list.">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314141a'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23e50914'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314141a'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
   <link rel="dns-prefetch" href="https://api.themoviedb.org">
   <link rel="stylesheet" href="style.css">
@@ -23,6 +23,7 @@
       background: #fff; color: #111; font: 600 14px/1 system-ui, sans-serif; text-decoration: none; transition: top .15s; }
     .skip-link:focus { top: 12px; }
     #app:focus { outline: none; }
+    #cinebox-react-root { margin: 1.5rem 0 0; }
   </style>
 </head>
 <body>
@@ -55,6 +56,8 @@
   <main id="app" tabindex="-1">
     <noscript><p style="padding:2rem">CineBox needs JavaScript to load movies and TV series. Please turn it on and reload the page.</p></noscript>
   </main>
+
+  <div id="cinebox-react-root"></div>
 
   <footer class="footer">
     <p>CineBox is a demo project. It does not host or stream video.</p>
@@ -89,6 +92,13 @@
     </div>
   </div>
 
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="script.js" defer></script>
+  <script type="text/babel" data-presets="react">
+    const root = ReactDOM.createRoot(document.getElementById('cinebox-react-root'));
+    root.render(<CineBoxInteraction />);
+  </script>
 </body>
 </html>

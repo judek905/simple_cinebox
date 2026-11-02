@@ -6,7 +6,149 @@
   <title>Lumen Cinema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="s<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lumen Cinema: see what's on, choose your seats and book tickets online.">
+  <title>Lumen Cinema | Now showing and online booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#now-showing">Skip to films</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top">Lumen Cinema</a>
+    <nav aria-label="Main">
+      <a href="#now-showing">Now showing</a>
+      <a href="#coming-soon">Coming soon</a>
+      <a href="#visit">Prices &amp; food</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Big screen.<br>Good seats.<br>Tonight.</h1>
+      <p>Pick a film, pick a time, pick your seats. Your booking reference is ready in under a minute, and you pay at the box office.</p>
+      <a class="btn" href="#now-showing">See what's on</a>
+    </section>
+
+    <section id="now-showing" class="section">
+      <h2>Now showing</h2>
+      <div class="filters" id="days" role="group" aria-label="Choose a day"></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by genre"></div>
+      <div class="grid" id="movies"></div>
+    </section>
+
+    <section id="coming-soon" class="section">
+      <h2>Coming soon</h2>
+      <ul class="soon" id="soon"></ul>
+    </section>
+
+    <section class="section">
+      <h2>The building</h2>
+      <dl class="facts">
+        <dt>Four screens</dt>
+        <dd>From a 60-seat room for small releases to the main hall with a 12-metre screen.</dd>
+        <dt>Sound</dt>
+        <dd>Dolby Atmos in the main hall, so footsteps and thunder come from where they should.</dd>
+        <dt>Seating</dt>
+        <dd>Wide recliners with a drink holder at every seat. Rows are staggered so no one watches the back of a head.</dd>
+        <dt>Access</dt>
+        <dd>Step-free entry, wheelchair spaces in every screen, hearing loops and captioned shows every Saturday.</dd>
+      </dl>
+    </section>
+
+    <section id="visit" class="section split">
+      <div>
+        <h2>Prices</h2>
+        <ul class="prices">
+          <li><strong>$6</strong> Matinee, any show starting before 4 pm</li>
+          <li><strong>$8</strong> Evening, any show starting from 4 pm</li>
+          <li><strong>$5</strong> Students, any show, with a valid ID</li>
+        </ul>
+        <p class="muted note">Children under 3 enter free and sit on a lap. Pay at the box office when you collect your tickets.</p>
+      </div>
+      <div>
+        <h2>Food &amp; drink</h2>
+        <ul class="prices menu">
+          <li><strong>$3</strong> Salted or sweet popcorn, small</li>
+          <li><strong>$5</strong> Popcorn, large, free refill</li>
+          <li><strong>$2</strong> Soft drink or bottled water</li>
+          <li><strong>$9</strong> Date combo: large popcorn and two drinks</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>Good to know</h2>
+      <div class="faq">
+        <details><summary>When should I arrive?</summary><p>Aim for 15 minutes before the start. Trailers run for about 15 minutes, so you won't miss the film if you are a little late.</p></details>
+        <details><summary>Can I cancel or change a booking?</summary><p>Yes. Show your reference at the box office at least one hour before the show and we will move or cancel it free of charge.</p></details>
+        <details><summary>What do the ratings mean?</summary><p>U is for everyone, PG is fine for children with a parent, 12 and 15 are the minimum ages to watch without an adult. We check ID for 15-rated films.</p></details>
+        <details><summary>Can I bring my own food?</summary><p>Please buy snacks at our counter. Water bottles are welcome.</p></details>
+      </div>
+    </section>
+
+    <section class="section">
+      <form class="news" id="news">
+        <h2>Get the weekly programme</h2>
+        <p class="muted">One short email on Thursdays with new films and special screenings.</p>
+        <div class="row">
+          <label class="sr" for="news-email">Email address</label>
+          <input id="news-email" type="email" placeholder="you@example.com" required autocomplete="email">
+          <button class="btn" type="submit">Sign up</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div>
+      <h2>Visit us</h2>
+      <p>12 Main Street, Your City<br>Free parking behind the building.</p>
+    </div>
+    <div>
+      <h2>Box office hours</h2>
+      <p>Mon to Fri: 12:00 to 22:00<br>Sat and Sun: 10:00 to 23:00</p>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <p>hello@lumencinema.example<br>+000 000 000 000</p>
+    </div>
+  </footer>
+
+  <dialog id="booking" aria-labelledby="b-title">
+    <form method="dialog" id="booking-form">
+      <button class="close" value="cancel" aria-label="Close" formnovalidate>&times;</button>
+      <h3 id="b-title"></h3>
+      <p id="b-time" class="muted"></p>
+      <label>Ticket type
+        <select id="b-type">
+          <option value="standard">Standard</option>
+          <option value="student">Student (bring ID)</option>
+        </select>
+      </label>
+      <div class="screen">Screen</div>
+      <div class="seats" id="seats" role="group" aria-label="Choose seats"></div>
+      <p class="legend"><span class="key free"></span>Free <span class="key sel"></span>Yours <span class="key tkn"></span>Taken</p>
+      <label>Your name <input id="b-name" required autocomplete="name"></label>
+      <p class="total">Seats: <span id="b-seats">none</span><br>Total: <strong id="b-total">$0</strong>, paid at the box office</p>
+      <button class="btn" id="b-confirm" value="confirm" disabled>Book tickets</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+tylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
